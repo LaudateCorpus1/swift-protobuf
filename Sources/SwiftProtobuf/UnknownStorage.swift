@@ -16,6 +16,8 @@
 
 import Foundation
 
+// TODO: `UnknownStorage` should be `Sendable` but we cannot do so yet without possibly breaking compatibility.
+
 /// Contains any unknown fields in a decoded message; that is, fields that were
 /// sent on the wire but were not recognized by the generated message
 /// implementation or were valid field numbers but with mismatching wire
@@ -44,8 +46,3 @@ public struct UnknownStorage: Equatable {
     }
   }
 }
-
-#if swift(>=5.5) && canImport(_Concurrency)
-// Once our minimum supported version has Data be Sendable, @unchecked could be removed.
-extension UnknownStorage: @unchecked Sendable {}
-#endif

@@ -7,6 +7,8 @@
 // https://github.com/apple/swift-protobuf/blob/main/LICENSE.txt
 //
 
+// TODO: `Message` should require `Sendable` but we cannot do so yet without possibly breaking compatibility.
+
 /// The protocol which all generated protobuf messages implement.
 /// `Message` is the protocol type you should use whenever
 /// you need an argument or variable which holds "some message".
@@ -31,7 +33,7 @@
 ///
 /// The actual functionality is implemented either in the generated code or in
 /// default implementations of the below methods and properties.
-public protocol Message: CustomDebugStringConvertible, _ProtoSendable {
+public protocol Message: CustomDebugStringConvertible {
   /// Creates a new message with all of its fields initialized to their default
   /// values.
   init()
